@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Todo {
 
@@ -13,6 +15,7 @@ public class Todo {
   private Long id;
 
   @NotEmpty(message = "Task cannot be empty")
+  @Length(max = 255, message = "Max length = 255")
   private String task;
 
   public Todo() {
