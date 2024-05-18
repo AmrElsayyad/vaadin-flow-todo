@@ -25,13 +25,17 @@ public class TodoApp extends VerticalLayout {
 
   TodoApp(TodoService service) {
     this.service = service;
+
+    getStyle().set("margin", "auto");
+    setWidth("min(90vw, 90vh)");
     setDefaultHorizontalComponentAlignment(Alignment.CENTER);
     task.setAutofocus(true);
+
     HorizontalLayout form = new HorizontalLayout(task, addButton);
     form.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
     form.setFlexGrow(1, task);
-    form.setWidth("50%");
-    taskList.setWidth("50%");
+    form.setWidth("100%");
+    taskList.setWidth("100%");
 
     add(new H1("Todo"), form, taskList);
 
