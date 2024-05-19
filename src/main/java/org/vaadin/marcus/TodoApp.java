@@ -27,7 +27,7 @@ public class TodoApp extends VerticalLayout {
     this.service = service;
 
     getStyle().set("margin", "auto");
-    setWidth("min(90vw, 90vh)");
+    setWidth("90vmin");
     setDefaultHorizontalComponentAlignment(Alignment.CENTER);
     task.setAutofocus(true);
 
