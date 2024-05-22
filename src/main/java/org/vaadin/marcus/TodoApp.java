@@ -2,6 +2,7 @@ package org.vaadin.marcus;
 
 import java.util.EventObject;
 
+import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
@@ -74,7 +75,7 @@ public class TodoApp extends VerticalLayout {
     return taskTextArea;
   }
 
-  private void addTask(EventObject e) {
+  private <T extends ComponentEvent<?>> void addTask(T e) {
     Todo todo = new Todo();
     if (binder.writeBeanIfValid(todo)) {
       service.saveTodo(todo);
