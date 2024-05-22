@@ -1,7 +1,5 @@
 package org.vaadin.marcus;
 
-import java.util.EventObject;
-
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
