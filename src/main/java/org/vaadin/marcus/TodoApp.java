@@ -16,20 +16,19 @@ import com.vaadin.flow.router.Route;
 
 @Route("")
 public class TodoApp extends VerticalLayout {
-  private TextField task = new TextField("Task");
-  private Button addButton = new Button("Add");
-  private UnorderedList taskList = new UnorderedList();
-  private TodoService service;
-  private Binder<Todo> binder = new BeanValidationBinder<>(Todo.class);
+  protected final TodoService service;
+  protected final TextField task = new TextField("Task");
+  protected final Binder<Todo> binder = new BeanValidationBinder<>(Todo.class);
+  protected final UnorderedList taskList = new UnorderedList();
 
   TodoApp(TodoService service) {
     this.service = service;
 
-    getStyle().set("margin", "auto");
     setWidth("90vmin");
+    getStyle().set("margin", "auto");
     setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-    task.setAutofocus(true);
 
+    Button addButton = new Button("Add");
     HorizontalLayout form = new HorizontalLayout(task, addButton);
     form.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
     form.setFlexGrow(1, task);
@@ -41,13 +40,14 @@ public class TodoApp extends VerticalLayout {
     binder.bindInstanceFields(this);
     addButton.addClickListener(this::addTask);
     task.addKeyPressListener(Key.ENTER, this::addTask);
+    task.focus();
     updateTasks();
   }
 
   private void updateTasks() {
     taskList.removeAll();
 
-    service.getTodos().stream().forEach(todo -> {
+    service.getTodos().forEach(todo -> {
       TextArea taskTextArea = createTaskTextArea(todo);
       Button deleteButton = new Button("Delete", e -> deleteTask(todo.getId()));
       deleteButton.setMinWidth("fit-content");
